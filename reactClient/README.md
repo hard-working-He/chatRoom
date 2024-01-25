@@ -1,7 +1,8 @@
 
 
 ```bash
-npm run dev
+cd reactClient
+pnpm run dev
 # or
 yarn dev
 # or

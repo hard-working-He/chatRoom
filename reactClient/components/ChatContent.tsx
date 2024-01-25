@@ -140,7 +140,7 @@ export default function ChatContent({
             roomMessages.map((message, index) => {
               if (message.sender === '') {
                 return null;
-              }
+              }      
               // 当前聊天对象 === 消息接收方（证明是发送方，所以显示右边）
               return message.sender === value ? (
                 <div className="chat_box chat_box_own" key={index}>

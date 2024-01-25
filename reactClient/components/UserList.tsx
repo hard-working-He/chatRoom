@@ -87,7 +87,7 @@ export default function UserList({
     };
   });
 
-  return !inRoom ? (
+  return (
     <Container>
       {Users.map((user, index) => {
         if (user.username == value) {
@@ -111,9 +111,7 @@ export default function UserList({
           );
         }
       })}
-    </Container>
-  ) : (
-    <Container>
+    
       {Users.map((user, index) => {
         if (RoomUsers.includes(user.username)) {
           return (
