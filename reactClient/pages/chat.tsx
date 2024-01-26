@@ -192,18 +192,20 @@ const Container = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+  background-color: rgb(151,157,167);
   .changeAvararButton {
     position: absolute;
     top: 3vw;
     right: 1vw;
     z-index: 999;
+     background-color: rgb(39, 42, 55);
   }
   .addRoom {
     position: absolute;
     top: 14vw;
     right: 1vw;
     z-index: 999;
+     background-color: rgb(39, 42, 55);
   }
 `;
 const ChatScreen = styled.div`
@@ -212,4 +214,6 @@ const ChatScreen = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  
 `;

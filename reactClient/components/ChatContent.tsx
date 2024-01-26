@@ -12,6 +12,7 @@ export default function ChatContent({
   inRoom = false,
   roomId = '',
   currentUser = '',
+  showEmoji=false,
   messages = [
     {
       sender: '',
@@ -92,6 +93,7 @@ export default function ChatContent({
       });
     }
   }
+  const clickEmoji=()=>showEmoji = !showEmoji
 
   useEffect(() => {
     setTimeout(() => {
@@ -127,8 +129,15 @@ export default function ChatContent({
                 );
               })
             )}
-          </div>
-          <div className="sender">
+            </div>
+            
+
+            <div className="sender">
+            <div class="emoji boxinput" onClick="clickEmoji">
+          <img src="chatRoom/reactClient/assets/img/emoji/smiling-face.png" alt="" />
+        </div>
+
+        
             <Input
               className="msg"
               value={inputValue}
@@ -138,8 +147,8 @@ export default function ChatContent({
               placeholder="说点什么..."
               
             />
-            <div className="send" onClick={sendMessage}>
-            <img src="chatRoom/reactClient/assets/img/emoji/rocket.png" alt="" />  
+            <div className="send boxinput" onClick={sendMessage}>
+            <img className='buttonImg' src="chatRoom/reactClient/assets/img/emoji/rocket.png" alt="" />  
             </div>
           </div>
         </div>
@@ -197,7 +206,7 @@ const Container = styled.div`
   width: 75%;
   height: 100%;
   border-radius: 0 20px 20px 0;
-  background: #f7f7f7;
+ background-color: rgb(50, 54, 68);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   .chatContent {
     width: 100%;
@@ -315,12 +324,51 @@ const Container = styled.div`
     } */
   }
   .sender {
-    margin: 30px 0;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    width: 100%;
+      position: absolute;
+      bottom: 0;
+      margin: 3%;
+      display: flex;
+    .emoji {
+        transition: 0.3s;
+        &:hover {
+          background-color: rgb(46, 49, 61);
+          border: 1px solid rgb(71, 73, 82);
+        }
+      }
+    .boxinput {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(66, 70, 86);
+        border-radius: 15px;
+        border: 1px solid rgb(80, 85, 103);
+        position: relative;
+        cursor: pointer;
+        .buttonImg {
+          width: 30px;
+          height: 30px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
     .msg {
       width: 80%;
+        height: 50px;
+        background-color: rgb(66, 70, 86);
+        border-radius: 15px;
+        border: 2px solid rgb(34, 135, 225);
+        padding: 10px;
+        box-sizing: border-box;
+        transition: 0.2s;
+        font-size: 20px;
+        color: #fff;
+        font-weight: 100;
+        margin: 0 20px;
+        &:focus {
+          outline: none;
+        }
     }
     .send {
      background-color: rgb(29, 144, 245);
@@ -331,23 +379,7 @@ const Container = styled.div`
           box-shadow: 0px 0px 10px 0px rgba(0, 136, 255);
         }
     }
-    .boxinput {
-        width: 50px;
-        height: 50px;
-        background-color: rgb(66, 70, 86);
-        border-radius: 15px;
-        border: 1px solid rgb(80, 85, 103);
-        position: relative;
-        cursor: pointer;
-        img {
-          width: 30px;
-          height: 30px;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
+    
   }
   .chatbgc {
     width: 100%;

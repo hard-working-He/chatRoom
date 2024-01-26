@@ -140,9 +140,8 @@ const Container = styled.div`
   flex-wrap: wrap;
   width: 35%;
   height: 100%;
-  /* background-color: #946127c5; */
   border-radius: 20px 0 0 20px;
-  background: #f7f7f7;
+  background-color: rgb(39, 42, 55);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
   margin-right: 5px;
@@ -162,26 +161,38 @@ const Container = styled.div`
   .userCard {
     width: 90%;
     height: 20%;
-    border-bottom: 1px solid #5a4d4daa;
+    border-radius: 10px;
     justify-content: space-around;
     align-items: center;
     display: flex;
+    background-color: rgb(50, 54, 68);
+    margin: 5px 0;
+    cursor: pointer;
     .avatar {
       width: 7vw;
       height: 7vw;
     }
     .username {
-      font-size: 20px;
-      color: #e67f09;
+      color: #fff;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin-bottom: 5px;
     }
     transition: all 0.5s;
     :hover {
       cursor: pointer;
+      
       .username {
         font-weight: bold;
         color: #1d0b04dd;
       }
     }
+    &:hover {
+    background-color: #1d90f5;
+    transition: 0.3s;
+    box-shadow: 0px 0px 10px 0px rgba(0, 136, 255);
+  }
   }
 `;
 
