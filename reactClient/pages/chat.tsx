@@ -70,6 +70,8 @@ export default function Chat() {
       tip.className = 'tip';
       tip.innerHTML = `${msg} (${time})`;
       chatScreen.appendChild(tip);
+      
+
     });
   }
 

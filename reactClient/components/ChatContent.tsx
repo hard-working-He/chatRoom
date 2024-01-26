@@ -34,7 +34,21 @@ export default function ChatContent({
   const [inputValue, setInputValue] = useState(''); // 初始化输入框的值为空
 
   const handleInputChange = (e: any) => {
-    setInputValue(e.target.value); // 更新输入框的值
+    setInputValue(e.target.value);
+    // 更新输入框的值
+     if (e.ctrlKey  && e.keyCode === 13) {
+     // if (event.shiftKey && event.keyCode === 13) {
+       console.log("换行");
+       
+       setInputValue(e.target.value + '\n');
+       console.log(3)
+     } else if (e.keyCode === 13) {
+       e.preventDefault(); // 阻止浏览器默认换行操作*/
+       setInputValue(e.target.value);
+      console.log(2)
+       sendMessage(); // 发送文本
+       console.log(4)
+     }
   };
 
   async function sendMessage() {
@@ -118,13 +132,15 @@ export default function ChatContent({
             <Input
               className="msg"
               value={inputValue}
-              onChange={handleInputChange}
+                onChange={handleInputChange}
+                onKeyUp={handleInputChange}
               size="large"
               placeholder="说点什么..."
+              
             />
-            <Button type="primary" className="send" onClick={sendMessage}>
-              发送消息
-            </Button>
+            <div className="send" onClick={sendMessage}>
+            <img src="chatRoom/reactClient/assets/img/emoji/rocket.png" alt="" />  
+            </div>
           </div>
         </div>
       )}
@@ -162,7 +178,8 @@ export default function ChatContent({
           <Input
             className="msg"
             value={inputValue}
-            onChange={handleInputChange}
+              onChange={handleInputChange}
+              onKeyUp={handleInputChange}
             size="large"
             placeholder="说点什么..."
           />
@@ -306,9 +323,31 @@ const Container = styled.div`
       width: 80%;
     }
     .send {
-      width: 100px;
-      height: 40px;
+     background-color: rgb(29, 144, 245);
+        border: 0;
+        transition: 0.3s;
+        box-shadow: 0px 0px 5px 0px rgba(0, 136, 255);
+        &:hover {
+          box-shadow: 0px 0px 10px 0px rgba(0, 136, 255);
+        }
     }
+    .boxinput {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(66, 70, 86);
+        border-radius: 15px;
+        border: 1px solid rgb(80, 85, 103);
+        position: relative;
+        cursor: pointer;
+        img {
+          width: 30px;
+          height: 30px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
   }
   .chatbgc {
     width: 100%;
