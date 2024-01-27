@@ -209,7 +209,7 @@ const Container = styled.div`
   }
 `;
 const ChatScreen = styled.div`
-  width: 75vw;
+  width: 80vw;
   height: 80vh;
   display: flex;
   justify-content: space-between;

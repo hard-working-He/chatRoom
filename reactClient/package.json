@@ -1,5 +1,5 @@
 {
-  "name": "mmcat-messaging-react18",
+  "name": "react-client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^1.9.7",
     "antd": "^5.10.1",
     "axios": "^1.5.1",
+    "emoji-popover": "^1.0.8",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",

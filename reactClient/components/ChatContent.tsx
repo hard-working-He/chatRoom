@@ -7,12 +7,16 @@ import { socket } from '../network/';
 import { httpHost } from '../network/index';
 import { notification, Spin, Input } from 'antd';
 import { formatTime } from '../utils/formatTime';
-
+import Emoji from '../pages/Emoji'
+import { UploadOutlined } from '@ant-design/icons';
+import type { UploadProps } from 'antd';
+import { message, Upload } from 'antd';
+import '/node_modules/emoji-popover/dist/style.css'
 export default function ChatContent({
   inRoom = false,
   roomId = '',
   currentUser = '',
-  showEmoji=false,
+  
   messages = [
     {
       sender: '',
@@ -29,10 +33,13 @@ export default function ChatContent({
     },
   ],
   isloading = true,
+
   setIsloading = new Function(),
-}) {
-  const value = useSelector((store: any) => store.username.value);
+})
+{
+  const value = useSelector((store: any) => store?.username.value);
   const [inputValue, setInputValue] = useState(''); // 初始化输入框的值为空
+
 
   const handleInputChange = (e: any) => {
     setInputValue(e.target.value);
@@ -42,13 +49,13 @@ export default function ChatContent({
        console.log("换行");
        
        setInputValue(e.target.value + '\n');
-       console.log(3)
+       
      } else if (e.keyCode === 13) {
        e.preventDefault(); // 阻止浏览器默认换行操作*/
        setInputValue(e.target.value);
-      console.log(2)
+      
        sendMessage(); // 发送文本
-       console.log(4)
+       
      }
   };
 
@@ -93,8 +100,26 @@ export default function ChatContent({
       });
     }
   }
-  const clickEmoji=()=>showEmoji = !showEmoji
-
+  const handleSelectEmoji = (emoji: string) => {
+  //sendMessage(); 
+  };
+  /* const props: UploadProps = {
+  name: 'file',
+  action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
+  headers: {
+    authorization: 'authorization-text',
+  },
+  onChange(info) {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully`);
+    } else if (info.file.status === 'error') {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+  },
+}; */
   useEffect(() => {
     setTimeout(() => {
       setIsloading(false);
@@ -107,7 +132,10 @@ export default function ChatContent({
         <h1 className="welcome">点击左侧用户列表开始聊天</h1>
       ) : (
         <div className="chatContent">
-          <div className="roomId">与 {currentUser} 的私人房间</div>
+            <div className="roomId">与 {currentUser} 的私人房间</div>
+            {/* <Upload {...props}>
+              <Button icon={<UploadOutlined />}></Button>
+            </Upload> */}
           <div className="content" id="chat">
             {isloading ? (
               <Spin size="large" className="loading" />
@@ -132,12 +160,15 @@ export default function ChatContent({
             </div>
             
 
-            <div className="sender">
-            <div class="emoji boxinput" onClick="clickEmoji">
-          <img src="chatRoom/reactClient/assets/img/emoji/smiling-face.png" alt="" />
-        </div>
+            <div className="sender">{/* onClick="clickEmoji */}
+            
 
-        
+      
+              <Emoji
+              onSelect={handleSelectEmoji}
+              />
+       
+              
             <Input
               className="msg"
               value={inputValue}
@@ -148,7 +179,7 @@ export default function ChatContent({
               
             />
             <div className="send boxinput" onClick={sendMessage}>
-            <img className='buttonImg' src="chatRoom/reactClient/assets/img/emoji/rocket.png" alt="" />  
+             
             </div>
           </div>
         </div>
@@ -371,7 +402,7 @@ const Container = styled.div`
         }
     }
     .send {
-     background-color: rgb(29, 144, 245);
+        background-color: rgb(29, 144, 245);
         border: 0;
         transition: 0.3s;
         box-shadow: 0px 0px 5px 0px rgba(0, 136, 255);
